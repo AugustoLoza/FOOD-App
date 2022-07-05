@@ -1,0 +1,60 @@
+.navbar{
+    background-image: url(../imagenes/Nav.jpg);
+    background-position: 500px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: min-content;
+    margin: 1rem 1rem;
+    padding: 0rem;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgb(240, 169, 103);;
+}
+
+.left{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.link-landing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.create-recipe, .casa{
+    height: 100%;
+    background-image: url(../imagenes/Nav.jpg);
+    background-position: 150px;
+   
+    color: white;
+    border: none;
+}
+
+
+
+.create-recipe:hover, .casa:hover{
+    cursor: pointer;
+    background-color: white;
+    color: rgb(235, 135, 42);
+
+}
+
+.navbar img{
+    width: 50px;
+    height: 50px;
+}
+
+.casa{
+    color: white;
+    margin-right: 1rem;
+}
+.casa:hover{
+    cursor: pointer;
+    background-color: white;
+    color: rgb(235, 135, 42);
+
+}

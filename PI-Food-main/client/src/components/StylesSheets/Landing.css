@@ -1,0 +1,42 @@
+.logo{
+    width: 1550px;
+    height: 755px;
+    position: fixed;
+}
+
+.landing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(90deg, #E3FCBF, #B8F1B0);
+    color: rgb(192, 97, 9);
+    height: 100vh;
+    width: 100vw;
+    background-size: 100% 100%;
+} 
+
+.ingresar{
+    position: relative;
+    display: inline-block;
+    background-color: rgb(192, 97, 9);
+    color: white;
+    cursor: pointer;
+    height: 2rem;
+    width: 16rem;
+    border: 2px solid rgb(240, 195, 154);
+    border-radius: 8px;
+}
+
+.titulo_pagina{
+    position: relative;
+    font-family: Helvetica, sans-serif;
+}
+
+.ingresar:hover{
+    
+    border-color: rgb(192, 97, 9);
+    background-color: white;
+    color: rgb(192, 97, 9);
+    font-weight:800;
+}

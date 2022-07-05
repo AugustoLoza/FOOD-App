@@ -1,0 +1,52 @@
+.home{
+    width: 1500px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../imagenes/Home.jpg");
+}
+
+.filtros{
+    background-image:url(../imagenes/SearchBar2.jpg);
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 0 20px #B8F1B0;
+}
+
+.recetas{
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    grid-gap: 10px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+.pages{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Errores*/
+
+.allrecetas-error{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 30%;
+    border-radius: 16px;
+    margin-top: 1rem;
+    align-self: center;
+}
+
+.allrecetas-error img{
+    height: 400px;
+}

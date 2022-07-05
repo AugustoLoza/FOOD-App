@@ -1,0 +1,9 @@
+.fav-error {
+    background-color: white;
+    border-radius: 16px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}

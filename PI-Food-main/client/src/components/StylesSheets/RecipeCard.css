@@ -1,0 +1,64 @@
+.foto_comida{
+    width: 252px;
+    height: 231px;
+    padding: 0 1rem;
+}
+
+
+
+.card{
+    background-color: rgb(235, 135, 42);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 16px;
+    color: white;
+    
+}
+
+.container{
+    width: 99%;
+    height: 99%;
+    background-image:url(../imagenes/Card.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    padding: .2rem;
+}
+
+.recipe_name{
+    text-align: center;
+    
+}
+
+.recipe_name:hover{
+    text-decoration: underline;
+    color: whitesmoke;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+.list_of_diets{
+    list-style: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-bottom: 1rem;
+    margin-right: 4.2rem;
+}
+
+.diets{
+    display: block;
+    font-size: .9rem;
+}
+

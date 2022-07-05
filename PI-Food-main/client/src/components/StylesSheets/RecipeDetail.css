@@ -1,0 +1,151 @@
+.detail-page{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../imagenes/Home.jpg");
+    
+    padding: 1rem 0;
+}
+
+.article{
+    background-image:url(../imagenes/Card.jpg);
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 1rem;
+    max-width: 80%;
+    color: rgb(235, 135, 42);
+}
+
+.foto_recipe{
+    width: 500px;
+    height: 313px;
+}
+
+.dish-types{
+    padding-inline-start: 0;
+    
+}
+
+.dish-types{
+    color: white;
+}
+
+.list-diets{
+    padding-inline-start: 0;
+    
+}
+
+.list-diets li{
+    color: white;
+}
+
+.score{
+    border: 2px solid rgb(235, 135, 42);
+    width: 10%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.score p{
+    font-size: 2rem;
+    font-weight: 900;
+    color: rgb(235, 135, 42);
+}
+
+.summary p{
+    color: white;
+}
+
+.summary a{
+    text-decoration: none;
+    color: white;
+}
+
+.summary a:hover{
+    text-decoration: underline;
+}
+
+.summary a:visited{
+    text-decoration: none;
+}
+
+.steps p{
+    color: white;
+}
+
+/*Botones*/
+
+.actions-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.actions-buttons button{
+    width: 6rem;
+    height: 3rem;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-right: 1rem;
+}
+
+.delete-button{
+    background-color: #770d05;
+    color: white;
+    border: 2px solid #9e1309;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-button span{
+    font-size: 1.5rem;
+    margin-right: .2rem;
+}
+
+.delete-button:hover{
+    
+    background-color: white;
+    color: #770d05;
+    border: 2px solid #911910;
+}
+
+.update_button{
+    background-color: #0f1fb3;
+    color: white;
+    border: 2px solid #0f1fb3;
+}
+
+.update_button:hover{
+    background-color: white;
+    color: #0f1fb3;
+    border: 2px solid #0f1fb3;
+}
+
+.favorite_button{
+    background-color: #657c10;
+    color: white;
+    border: 2px solid #657c10;
+}
+
+.favorite_button:hover{
+    background-color: white;
+    border: 2px solid #657c10;
+    color: #657c10;
+}
+
+
+/*Errors*/
+
+
+
+.foto_error{
+    height: 500px;
+    width: 400px;
+}

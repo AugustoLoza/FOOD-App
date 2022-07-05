@@ -1,0 +1,19 @@
+.filter_contenedor{
+    width: 55%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-image:url(../imagenes/SearchBar2.jpg);
+}
+
+.filter_types{
+    border-radius: 5px;
+    border: solid 2px grey;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    width: 250px;
+}
+
+

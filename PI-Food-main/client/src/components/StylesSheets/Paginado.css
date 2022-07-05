@@ -1,0 +1,39 @@
+.paginado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: fit-content;
+    color: rgb(235, 135, 42);
+}
+
+.numberA{
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(235, 135, 42);
+
+}
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    border: 2px solid rgb(235, 135, 42);
+    background-color: #004e1e;
+    color: rgb(235, 135, 42);
+    width: 20px;
+    height: 25px;
+    margin: 5px;
+    list-style: none;
+}
+
+.directionButton{
+    border: 2px solid rgb(235, 135, 42);
+    background-color: #004e1e;
+    color: rgb(235, 135, 42);
+    width: 6rem;
+    height: 2rem;
+    cursor: pointer;
+}

@@ -1,0 +1,138 @@
+.cont-form{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.create_recipe{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    height: 100%;
+}
+
+.form{
+    background-color: #f0f5f5;
+    width: 60%;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.form div{
+    display: flex;
+    flex-direction: column;
+}
+
+.form div label, .form  h1{
+    color: #2a2b2b;
+    
+}
+
+.form div label{
+    margin-bottom: .2rem;
+}
+
+textarea{
+    resize: none;
+    height: 4.5rem;
+    width: 40%;
+}
+
+.form input{
+    width: 50%;
+    height: 30%;
+}
+
+.class-select{
+    margin-bottom: 1rem;
+    
+}
+
+.class-select option{
+    text-transform: capitalize;
+}
+
+
+
+
+
+.button-submit{
+    margin: 0;
+    padding: .87rem 0;
+    border: none;
+    margin: 0rem -1rem;
+    background-color: #14C38E;
+    color: white;
+}
+
+.button-submit:hover{
+    background-color: #E3FCBF;
+    color: #14C38E;
+    border: 2px solid #14C38E;
+    cursor: pointer;
+}
+
+.button-submit:disabled{
+    background-color: #f0f5f5;
+    color: black;
+}
+
+p.danger {
+    color: red;
+    font-size: 10px;
+}
+
+
+input.danger, textarea.danger{
+    border: 2px solid red;
+}
+
+/*Lista de dietas*/
+
+.my-diets{
+    display: flex;
+    flex-direction: column;
+    background-color: #14C38E;
+    width: 40%;
+    height: 100%;
+    padding: 1rem;
+    
+}
+
+.tipo_dieta{
+    background-color: white;
+    width: 20%;
+    padding: .4rem;
+    margin: .2rem;
+    text-transform: capitalize;
+    border-radius: 16px;
+}
+
+.dietitas{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0px 7px;
+}
+
+.cerrar{
+    background-color: red;
+    color: white;
+    font-weight: 800;
+    width: 20%;
+    height: 80%;
+    align-self:flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cerrar:hover{
+    cursor: pointer;
+}
