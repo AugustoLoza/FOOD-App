@@ -4,7 +4,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-image:url(../imagenes/SearchBar2.jpg);
+    background: none;
+    /*background-image:url(../imagenes/SearchBar2.jpg);*/
 }
 
 .filter_types{
@@ -14,6 +15,8 @@
     height: 30px;
     padding: 5px;
     width: 250px;
+    background: #666668;
+    color: rgb(235, 135, 42);;
 }
 
 

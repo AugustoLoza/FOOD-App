@@ -9,7 +9,49 @@ const {API_KEY} = process.env;
 
 const router = Router();
 
-let getApiInfo = async () => {
+/*router.get('/', async function(req, res, next){
+    const title = req.query.name
+    var recipes =[]
+    var lim=0
+    //primero busco en la api externa
+    fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`).then(r => r.json())
+      .then((result) => {
+  
+        if(result && result.results){
+          recipes = result.results;
+  
+        //reformate los resultados para que quede igual a la bd
+          recipes = recipes.map(r=>({
+            id:r.id,
+            title:r.title,
+            summary:r.summary,
+            score: r.spoonacularScore,
+            healthyness:r.healthScore,
+            image:r.image,
+            diets:r.diets,
+            steps:(r.analyzedInstructions && r.analyzedInstructions.steps?r.analyzedInstructions.steps.map(item=>item.step).join("|"):'')
+            })
+          )
+        }
+        //filtro los resultados para obtener los que contienen el string en name
+  
+        recipes = recipes.filter(r=>!title || r.title.includes(title))
+        // si no hay 9 resultados busco en la base de datos
+  
+  
+  
+          filterByTitle(res,recipes,title)
+  
+        }  
+  
+     , ()=>{
+  
+      return filterByTitle(res,recipes,title,lim)}
+     
+     )
+  })*/
+
+/*let getApiInfo = async () => {
     try {
         let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         const { results } = apiData.data
@@ -21,7 +63,7 @@ let getApiInfo = async () => {
             if(e.glutenFree && !dietas.includes('gluten free'))dietas.push('gluten free');
             if(e.dairyFree && !dietas.includes('dairy free'))dietas.push('dairy free');
 
-           // https://api.spoonacular.com/recipes/complexSearch?apiKey=d45b56640aaf4706bb358271fb9cde02&addRecipeInformation=true&number=100
+           
 
             return {
                 id:e.id,
@@ -43,7 +85,28 @@ let getApiInfo = async () => {
         console.log(error)
         return([])
     }
-}
+}*/
+const getApiInfo = async () =>{
+    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+    //console.log(apiUrl)
+    const apiInfo = await apiUrl.data.results.map(e =>{
+        return{
+                id:e.id,
+                name:e.title,
+                lowFodmap: e.lowFodmap,
+                vegetarian:e.vegetarian,
+                vegan:e.vegan,
+                glutenFree:e.glutenFree,
+                dairyFree:e.dairyFree,
+                healthScore: e.healthScore,
+                summary: e.summary,
+                diets:e.diets,
+                steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):''),
+                image:e.image
+        };
+    });
+    return apiInfo;
+};
 
 let getDbInfo = async () => {
     try {
@@ -94,27 +157,29 @@ let getAllInfo = async () => {
     }
 }
 
-getApiInfoByName = (n) => {
-    // try {
-    //     let apiData = await getApiInfo()
-    //     let resultados = apiData.filter(e => e.name.toLowerCase().includes(n.toLowerCase()))
-    //     return resultados
 
-    // } catch (error) {
-    //     console.log(error)
-    // }
-    let apiData = getApiInfo()
+
+getApiInfoByName = async(name) => {
+     try {
+        let apiData = await getApiInfo()
+        let resultados = apiData.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
+        return resultados
+
+     } catch (error) {
+         console.log(error)
+     }
+   /* let apiData = getApiInfo()
     .then(data => data.filter(e => e.name.toLowerCase().includes(n.toLowerCase())))
     .catch(err => console.log(err))
     
-    return apiData
+    return apiData*/
 
 }
 
-getDbInfoByName = async(n) => {
+getDbInfoByName = async(name) => {
     try{
         let dataDb = await getDbInfo()
-        return dataDb.filter(e => e.name.toLowerCase().includes(n.toLowerCase()))
+        return dataDb.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
     }catch(err){
         console.log(err)
     }
@@ -159,7 +224,7 @@ let getApiIdInfo = async (id) => {
         return data
     } catch (err) {
         
-        return {error:'No me pude conectar con el servidor :('}
+        res.status(404).json({ err: `No existe una receta para el id: ${id}` });
     }
 }
 
@@ -236,7 +301,7 @@ router.get('/:id', async(req, res) => {
             }
         }
     } catch (err) {
-        res.json({error:'No existe la receta'})
+        res.status(404).json({ err: "No existe la receta"  });
     }
 })
 

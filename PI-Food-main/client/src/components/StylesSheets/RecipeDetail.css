@@ -9,7 +9,7 @@
 }
 
 .article{
-    background-image:url(../imagenes/Card.jpg);
+    background-image:none;
     align-self: center;
     display: flex;
     flex-direction: column;

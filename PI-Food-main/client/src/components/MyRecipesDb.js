@@ -13,17 +13,17 @@ export function MyRecipesDb(){
     const dispatch = useDispatch()
 
     const recipes = useSelector(state => state.recipes)
-    const myRecipes = recipes.data?.filter(e => e.createdInDb)
+    const myRecipes = recipes.filter(e => e.createdInDb)
     
     useEffect(() => {
         dispatch(getAllRecipes())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    },[dispatch])
 
     
 
     return (
-        
+        <div className="all-RecipesDb">
         <div className="recipesDb">
             <NavBar /> 
             {
@@ -49,14 +49,12 @@ export function MyRecipesDb(){
 
             <>
                 <div className='allrecetaserror'>
-                    <img className="foto_error" src={Gorrito} alt='gorrito'></img>
-                    <h1>Todavia no has creado recetas</h1>
-                    <p>Pero no te preocupes... podes crear la primera!</p>
-                    <Link to='/create'><button className="first-recipe">Crear mi primera receta</button></Link>
+                <div className='recetas-error'><img src={Loader} alt='Loader'></img></div>
                 </div>
             </>
 
             }
+        </div>
         </div>
     )
 }

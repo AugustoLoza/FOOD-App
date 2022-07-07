@@ -18,7 +18,7 @@ export default function RecipeDetail(){
     }
 
     const dispatch = useDispatch()
-    const history = useNavigate()
+    const navigate = useNavigate()
 
     let { id } = useParams()
     const recipe = useSelector((state) => state.recipe)
@@ -31,8 +31,10 @@ export default function RecipeDetail(){
     },[])
 
     function delRecipe(idRecipe){
-        dispatch(deleteRecipe(idRecipe))
-        history('/home')
+        dispatch(deleteRecipe(idRecipe));
+        return (
+            alert(`La receta fue eliminada con éxito.`), navigate(`/home`)
+            ) 
     }
 
     function handleFavourite(){
@@ -51,7 +53,11 @@ export default function RecipeDetail(){
             
             <NavBar />
             <article className="article">
-                {!err ?
+                
+                {
+                
+                
+                err ?
                 <>
                     {
                         recipe.id != id ?
@@ -143,9 +149,7 @@ export default function RecipeDetail(){
                 </> : 
                 <>
                     <div>
-                        <img className="foto_error" src={Gorrito} alt='gorrito'></img>
-                        <h1>Recipe not found</h1>
-                        <p>The recipe doesn't exist</p>
+                    <div><img src={Loader} alt='loader'></img></div>
                     </div>
                 </>    
             }

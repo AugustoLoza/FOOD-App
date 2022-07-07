@@ -3,25 +3,25 @@ import { useDispatch } from 'react-redux';
 import { searchByName } from "../redux/actions";
 import './StylesSheets/SearchBar.css'
 
-export function SearchBar(){
+export function SearchBar(setCurrentPage){
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
 
     function handleOnChange(e){
-        e.preventDefault()
-        setSearch(e.target.value)
+        e.preventDefault();
+        setSearch(e.target.value);
+        
     }
 
     function handleSubmit(e){
-        e.preventDefault()
-        if(!search){
-            alert('No ingresaste un valor valido')
-            
-        }else{
-            dispatch(searchByName(search))
-        }
+        e.preventDefault();
+       
+            dispatch(searchByName(search));
+            setCurrentPage(1);
         
-        setSearch('')
+        
+        
+        
     }
 
     return (

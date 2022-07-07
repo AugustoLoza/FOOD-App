@@ -21,7 +21,7 @@
     align-items: center;
     border-radius: 2px;
     border: 2px solid rgb(235, 135, 42);
-    background-color: #004e1e;
+    background-color: #666668;
     color: rgb(235, 135, 42);
     width: 20px;
     height: 25px;
@@ -31,7 +31,7 @@
 
 .directionButton{
     border: 2px solid rgb(235, 135, 42);
-    background-color: #004e1e;
+    background-color: #666668;
     color: rgb(235, 135, 42);
     width: 6rem;
     height: 2rem;

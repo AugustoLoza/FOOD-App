@@ -1,7 +1,7 @@
 .navbar{
-    background-image: url(../imagenes/Nav.jpg);
-    background-position: 500px;
-    
+   /* background-image: url(../imagenes/Nav.jpg);
+    background-position: 500px;*/
+    background: none;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -9,7 +9,7 @@
     margin: 1rem 1rem;
     padding: 0rem;
     border-radius: 16px;
-    box-shadow: 0 0 20px rgb(240, 169, 103);;
+    box-shadow: 0 0 20px #272626;
 }
 
 .left{
@@ -27,9 +27,9 @@
 
 .create-recipe, .casa{
     height: 100%;
-    background-image: url(../imagenes/Nav.jpg);
-    background-position: 150px;
-   
+    /*background-image: url(../imagenes/Nav.jpg);
+    background-position: 150px;*/
+    background: none;
     color: white;
     border: none;
 }

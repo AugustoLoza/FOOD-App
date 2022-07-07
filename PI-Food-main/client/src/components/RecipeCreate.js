@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTypes, postRecipe } from '../redux/actions/index';
+import { getAllTypes, postRecipe, getAllRecipes } from '../redux/actions/index';
 import { NavBar } from "./NavBar";
 import './StylesSheets/RecipeCreate.css'
 import Loader from './imagenes/rodrigosloader.gif'
@@ -31,17 +31,21 @@ export function RecipeCreate(){
         if(!input.steps){
             errors.steps = 'Hace falta agregar el paso a paso de la receta.'
         }
+        if (input.name.charAt(0) !== input.name.charAt(0).toUpperCase()){
+            errors.name = "La primera letra debe ser mayúscula"
+        }
 
         
         return errors
     }
 
-
+    const allRecipes = useSelector((state) => state.all_recipes);
     const allDiets = useSelector(state => state.types)
 
     useEffect( () => {
         dispatch(getAllTypes())
-    }, [])
+        dispatch(getAllRecipes())
+    }, [dispatch])
 
     const [input, setInput] = useState({
         name: '',
@@ -83,10 +87,15 @@ export function RecipeCreate(){
         }))
     }
 
-    function handleSubmit(e){
+    
+    function handleSubmit(e) {    
         e.preventDefault();
-        
-        if(Object.keys(errors).length === 0 && (input.name!=='')){
+        try {
+          let findName = allRecipes.find((e) => e.name.toLowerCase() === input.name.toLowerCase()
+          )
+          if (findName) {
+            return alert("Ya existe una receta con este nombre. ¡Cambialo!");
+          }else if(Object.keys(errors).length === 0 && (input.name!=='')){
             if(input.healthScore){parseInt(input.healthScore)}
             dispatch(postRecipe(input))
             setInput({
@@ -98,13 +107,16 @@ export function RecipeCreate(){
                 diets: []
             })
             return (
-                 navigate(`/home`)
+                alert(`La receta fue creada con éxito.`), navigate(`/home`)
                 ) 
-        }else{
-            alert('no se envio')
+          
+       } } catch (error) {
+          console.log(error);
+          return alert(
+            "Oh no! Algo falló al crear la receta. ¡Intentalo de nuevo!"
+          );
         }
-
-    }
+      };
     
     return (
         <div className="cont-form">
@@ -182,10 +194,10 @@ export function RecipeCreate(){
                             
                             <div className="class-select">
                                 <label>Tipos de dieta</label>
-                                <select onChange={handleDiet} defaultValue='Eligir tipos de dietas' >
+                                <select onChange={handleDiet} Value='Onetype' >
                                     <option disabled>Eligir tipos de dietas</option>
                                     {
-                                        allDiets.data && allDiets.data?.map(e => {
+                                        allDiets && allDiets?.map(e => {
                                             return (
                                                 <option key={e.name} value={e.name} name={e.name}>{e.name}</option>
                                             )
@@ -203,7 +215,7 @@ export function RecipeCreate(){
                         </form>
 
                         <div className="my-diets">
-                            <h3>Mis dietas</h3>
+                            <h3>MIS DIETAS</h3>
                             <div className="dietitas">
                                 {input.diets.map(d => {
                                     return (

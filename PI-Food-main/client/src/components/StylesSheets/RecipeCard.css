@@ -7,21 +7,24 @@
 
 
 .card{
-    background-color: rgb(235, 135, 42);
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px;
-    padding: 5px;
+    margin: 15px;
+    padding: 3px;
     border-radius: 16px;
     color: white;
+    
+    box-shadow: 0 0 20px #272626;
+   
     
 }
 
 .container{
     width: 99%;
     height: 99%;
-    background-image:url(../imagenes/Card.jpg);
+   /* background-image:url(../imagenes/Card.jpg);*/
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,86 +1,77 @@
 import {GET_ALL_RECIPES, GET_ALL_TYPES, GET_RECIPE_BY_ID,DELETE_RECIPE, UPDATE_RECIPE,
-        FILTER_BY_DIETS, FILTER_ALPHA_SCORE,
+        FILTER_BY_DIETS, ORDER_BY_NAME,
         POST_RECIPE, GET_RECIPE_BY_NAME,
-        ADD_FAVORITE, DELETE_FAVORITE} 
+        ADD_FAVORITE, DELETE_FAVORITE, ORDER_BY_SCORE, } 
 from '../actions/index'
 
-function sortAsc(x, y){
-    if (x.name < y.name) {return -1;}
-    if (x.name > y.name) {return 1;}
-    return 0;
-}
 
-function sortDesc(x,y){
-    if (x.name > y.name) {return -1;}
-    if (x.name < y.name) {return 1;}
-    return 0;
-}
 
 const initialState = {
     recipes:[],
     all_recipes:[],
     recipe:{},
     types:[],
-    error:false,
-    favourite_recipes:[]
+    error:true,
+    favourite_recipes:[],
+    backUp:[],
+    errorRender: [],
+    
 };
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type){
+
+       
         case GET_ALL_RECIPES:
             
-            if(action.payload.data.length === 0){
-                return{
-                    ...state,
-                    recipes: action.payload,
-                    all_recipes:action.payload,
-                    error:true
-                }
-            }
-
-            return{
+            return {
                 ...state,
+                all_recipes: action.payload,
                 recipes: action.payload,
-                all_recipes:action.payload,
+                backUp: action.payload,
+                errorRender: action.payload,
                 error:false
-            }
+                
+                
+                
+              };
         case GET_ALL_TYPES:
 
-            return{
-                ...state,
-                types:action.payload
-            }
+            return { ...state, types: action.payload };
         case GET_RECIPE_BY_ID:
-            console.log(action.payload.data)
-            if(action.payload.data.error){
-                return {
-                    ...state,
-                    recipe:action.payload.data,
-                    error:true
-                }
-            }else{
-                return {
-                    ...state,
-                    recipe:action.payload.data,
-                    error:false
-                }
-            }
-            
-        case GET_RECIPE_BY_NAME:
-            if(action.payload.data.length === 0){
+
+            if(action.payload.length !== 0){
                 return{
                     ...state,
-                    recipes:action.payload,
+                    recipe:action.payload,
                     error: true
                 }
             }else{
                 return{
                     ...state,
-                    recipes:action.payload,
+                    recipe:action.payload,
+                    error: false
+                }
+            }
+           // return { ...state, recipe: action.payload };
+            
+        case GET_RECIPE_BY_NAME:
+
+            if(action.payload.length === 0){
+                return{
+                    ...state,
+                    backUp:action.payload,
+                    error: true
+                }
+            }else{
+                return{
+                    ...state,
+                    backUp:action.payload,
                     error: false
                 }
             }
             
+           
         case POST_RECIPE:
             
            
@@ -94,21 +85,54 @@ const rootReducer = (state = initialState, action) => {
                     ...state
                 }
         case FILTER_BY_DIETS:
-            let all_recipes = state.all_recipes.data;
+
+            const allRecipes = state.all_recipes;
+            const typesFiltered =
+              action.payload === "allTypes"
+              ? allRecipes
+              : allRecipes.filter((r) => r.diets.includes(action.payload));
+            return {
+              ...state,
+              backUp: typesFiltered,
+            }
+           /* let all_recipes = state.all_recipes;
             const diet_type = action.payload
             let total  = {data : all_recipes.filter(e => e.diets.includes(diet_type))}
 
             return{
                 ...state,
                 recipes: total
-            }
-        case FILTER_ALPHA_SCORE:
-            const [ord, type] =action.payload
+            }*/
+        case ORDER_BY_NAME:
+
+            let ordername =
+            action.payload === "aToZ"
+              ? state.backUp.sort(function (a, b) {
+                  if (a.name > b.name) return 1;
+                  // if (b.name > a.name) return -1;
+                  else {
+                    return- 1
+                  }
+                  // return 0;
+                })
+              : state.backUp.sort(function (a, b) {
+                  if (a.name > b.name) return -1;
+                  else {
+                    return 1
+                  }
+                  // if (b.name > a.name) return 1;
+                  // return 0;
+                });
+          return {
+            ...state,
+            backUp: ordername,
+          };
+            /*const [ord, type] =action.payload
             let r, rf;
 
             if(ord && type){
-                let all_recipes = state.all_recipes.data;
-                let filter_recets = state.recipes.data
+                let all_recipes = state.all_recipes;
+                let filter_recets = state.recipes
                 if(type === 'alph'){
                     if(ord === 'asc'){
                         r = all_recipes.sort(sortAsc)
@@ -143,7 +167,24 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 all_recipes: t,
                 recipes: tf
-            } 
+            } */
+            case ORDER_BY_SCORE:
+                let OrderByScore =
+                action.payload === "minToMax"
+                  ? state.backUp.sort(function (a, b) {
+                      if (a.healthScore > b.healthScore) return 1;
+                      if (b.healthScore > a.healthScore) return -1;
+                      return 0;
+                    })
+                  : state.backUp.sort(function (a, b) {
+                      if (a.healthScore > b.healthScore) return -1;
+                      if (b.healthScore > a.healthScore) return 1;
+                      return 0;
+                    });
+              return {
+                ...state,
+                backUp: OrderByScore,
+              };
         case ADD_FAVORITE:
             return {
                 ...state,

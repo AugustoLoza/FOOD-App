@@ -1,5 +1,5 @@
 import React from 'react';
-import Chefcito from './imagenes/kisspng-chef-cartoon-clip-art-chef-5ab9426af1a5a0.5282250815220906029898.png';
+import Cheff from "./imagenes/Cheff.png";
 import casa from './imagenes/home.png';
 import {Link} from 'react-router-dom';
 import './StylesSheets/NavBar.css'
@@ -19,7 +19,7 @@ export function NavBar(){
         <div className='navbar'>
                 <div className='left'>
                     <Link className='link-landing' to='/'>
-                        <img src={Chefcito} alt='chefcito'></img>
+                        <img src={Cheff} alt='chefcito'></img>
                     </Link>
                     <Link to='/create'><button className='create-recipe'>Crear Receta</button></Link>
                     <Link to='/my-recipes'><button className='create-recipe'>Mis recetas</button></Link>

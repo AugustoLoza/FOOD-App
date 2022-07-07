@@ -2,6 +2,13 @@
     display: flex;
     flex-direction: column;
     
+    
+}
+.all-RecipesDb{
+    background-image: url("../imagenes/Home1.jpg");
+    width: 1515px;
+    min-height: 100%;
+    position: absolute;
 }
 
 .allrecetaserror{
