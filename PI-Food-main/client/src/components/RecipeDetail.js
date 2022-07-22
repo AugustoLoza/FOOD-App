@@ -4,10 +4,10 @@ import React from "react";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from "react-router-dom";
-import { addFavorite, deleteFavorite, deleteRecipe, getRecipeById } from "../redux/actions/index";
+import {  deleteRecipe, getRecipeById } from "../redux/actions/index";
 import './StylesSheets/RecipeDetail.css'
 import { NavBar } from './NavBar';
-import  Gorrito  from './imagenes/Gorrito.jpg'
+
 import  Loader  from "./imagenes/rodrigosloader.gif";
 import { useNavigate } from 'react-router-dom';
 
@@ -23,8 +23,7 @@ export default function RecipeDetail(){
     let { id } = useParams()
     const recipe = useSelector((state) => state.recipe)
     const err = useSelector((state) => state.error)
-    const favoritos = useSelector(state => state.favourite_recipes)
-    const recipesFav = favoritos.find(r => r.id.toString()  === id)
+    
 
     useEffect ( () => {
         dispatch(getRecipeById(id))
@@ -37,15 +36,7 @@ export default function RecipeDetail(){
             ) 
     }
 
-    function handleFavourite(){
-        
-        if(!recipesFav){
-            dispatch(addFavorite(recipe))
-        }else{
-            dispatch(deleteFavorite(id))
-        }
-        
-    }
+    
     
 
     return (
@@ -134,15 +125,7 @@ export default function RecipeDetail(){
                                 </>
                             )
                         }
-                        <button 
-                            onClick={handleFavourite} 
-                            className="favorite_button">
-                            {
-                                !recipesFav ?
-                                <>Agregar a favoirtos</> :
-                                <>Eliminar de favoritos</>
-                            }
-                        </button>
+                       
                     </div>
                     </>
                     }

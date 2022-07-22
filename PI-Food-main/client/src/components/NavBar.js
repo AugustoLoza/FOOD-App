@@ -23,7 +23,8 @@ export function NavBar(){
                     </Link>
                     <Link to='/create'><button className='create-recipe'>Crear Receta</button></Link>
                     <Link to='/my-recipes'><button className='create-recipe'>Mis recetas</button></Link>
-                    <Link to='/favourites'><button className='create-recipe'>Favoritos</button></Link>
+                    <Link to="/my-Diets"><button className='create-recipe'>Mis Dietas</button></Link>
+                    
                     
                 </div>
                     

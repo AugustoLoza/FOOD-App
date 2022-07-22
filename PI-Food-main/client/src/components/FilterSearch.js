@@ -92,11 +92,7 @@ export function FilterSearch({allDiets, setCurrentPage, setOrder, typeOrder, set
             </option>
             {AllDiets &&
               AllDiets
-                .sort(function (a, b) {
-                  if (a.name < b.name) return -1;
-                  if (a.name > b.name) return 1;
-                  return 0;
-                })
+               
                 .map((t) => (
                   <option class="options" value={t.name} key={t.name}>
                     {t.name}

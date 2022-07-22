@@ -7,6 +7,7 @@ const typesRouters = require('./typesRoutes.js')
 
 
 
+
 const router = Router();
 
 // Configurar los routers
@@ -14,5 +15,6 @@ const router = Router();
 router.use('/recipes', recipesRouters);
 router.use('/recipe', recipeRouters);
 router.use('/types', typesRouters);
+
 
 module.exports = router;

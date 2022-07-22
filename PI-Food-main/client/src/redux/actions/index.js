@@ -11,8 +11,8 @@ export const POST_RECIPE = 'POST_RECIPE';
 export const GET_RECIPE_BY_NAME = 'GET_RECIPE_BY_NAME'
 export const DELETE_RECIPE = 'DELETE_RECIPE'
 export const UPDATE_RECIPE = 'UPDATE_RECIPE'
-export const ADD_FAVORITE = 'ADD_FAVORITE'
-export const DELETE_FAVORITE = 'DELETE_FAVORITE'
+
+
 
 
 const URL = "http://localhost:3001"
@@ -177,6 +177,7 @@ export const postRecipe = (payload) => {
 export const searchByName = (name) => {
   return async (dispatch) => {
     try {
+     
       const json = await axios.get( `${URL}/recipes?name=${name}`);
 
       return dispatch({
@@ -227,6 +228,7 @@ export function filterByDiets(payload){
     }
 }
 
+
 export const orderByScore = (payload) => ({
   type: ORDER_BY_SCORE,
   payload,
@@ -239,16 +241,3 @@ export function OrderByName(payload){
     }
 }
 
-export function addFavorite(payload){
-    return {
-        type: ADD_FAVORITE,
-        payload
-    }
-}
-
-export function deleteFavorite(payload){
-    return {
-        type: DELETE_FAVORITE,
-        payload
-    }
-}

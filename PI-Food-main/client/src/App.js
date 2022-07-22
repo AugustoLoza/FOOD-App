@@ -6,7 +6,8 @@ import RecipeDetail from './components/RecipeDetail'
 import RecipeCreate from './components/RecipeCreate'
 import MyRecipesDb from './components/MyRecipesDb';
 import UpdateRecipe from './components/UpdateRecipe';
-import Favourites from './components/Favourites';
+import MisDietas from "./components/MisDietasDb"
+
 
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
         <Route path='/my-recipes' element={<MyRecipesDb />} />
         <Route path="/:id" element={<RecipeDetail />} />
         <Route path="/update/:id" element={<UpdateRecipe />} />
-        <Route path='/favourites' element={<Favourites />} />
+        <Route path="/my-Diets" element={<MisDietas/>}/>
+        
       </Routes>
     </BrowserRouter>
   );

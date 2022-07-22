@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavBar } from "./NavBar";
 import RecipeCard from "./RecipeCard";
 import Loader from './imagenes/rodrigosloader.gif'
-import Gorrito from './imagenes/Gorrito.jpg'
-import { Link } from "react-router-dom";
+
 import './StylesSheets/MyRecipesDb.css'
 
 export function MyRecipesDb(){

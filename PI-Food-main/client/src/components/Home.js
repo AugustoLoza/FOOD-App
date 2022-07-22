@@ -10,7 +10,7 @@ import { FilterSearch } from './FilterSearch';
 
 import './StylesSheets/Home.css';
 import { NavBar } from './NavBar';
-import Gorrito from './imagenes/Gorrito.jpg'
+
 import  Loader  from "./imagenes/rodrigosloader.gif"
 
 
@@ -28,7 +28,7 @@ export function Home(){
     const [typeOrder, setTypeOrder] = useState('')
 
     const [currentPage, setCurrentPage] = useState(1)
-    const [recipesPerPage, setRecipesPerPage] = useState(9)
+    const [recipesPerPage, ] = useState(9)
 
     
 
@@ -71,7 +71,7 @@ export function Home(){
     if (errorRender.length === 0) {
         return (
           <div className='Loader'>
-            <img src={Loader}></img>
+            <img  alt="image1" src={Loader}></img>
           </div>
         );
       } else{
@@ -113,7 +113,7 @@ export function Home(){
                 <>
                     {
                         (!currentRecipes) ?
-                        <><div className='allrecetas-error'><img src={Loader}></img></div> </> :
+                        <><div className='allrecetas-error'><img alt="image2" src={Loader}></img></div> </> :
                         <>
                             <div className='recetas'>
                                 {currentRecipes?.map(e => 
@@ -138,7 +138,7 @@ export function Home(){
                 </> :
                 <>
                     <div className='allrecetas-error'>
-                    <div className='allrecetas-error'><img src={Loader}></img></div>
+                    <div className='allrecetas-error'><img  alt="image3" src={Loader}></img></div>
                     </div>
                 </>
             }

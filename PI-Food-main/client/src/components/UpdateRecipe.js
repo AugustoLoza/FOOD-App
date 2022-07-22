@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function UpdateRecipe(){
     const dispatch = useDispatch()
-    const history = useNavigate()
+    const navigate = useNavigate()
 
     let { id } = useParams()
 
@@ -78,7 +78,10 @@ export function UpdateRecipe(){
         if(Object.keys(errors).length === 0){
             if(input.healthScore){parseInt(input.healthScore)}
             dispatch(updateRecipe(id, input))
-            history(`/my-recipes`)
+            return (
+                alert(`La receta fue actualizada con éxito.`), navigate(`/my-recipes`)
+                ) 
+            
         }
         
 
@@ -87,7 +90,7 @@ export function UpdateRecipe(){
 
     function cancel(e){
         e.preventDefault()
-        history(`/${id}`)
+        navigate(`/${id}`)
     }
 
     return (
@@ -166,7 +169,7 @@ export function UpdateRecipe(){
                                 <select onChange={handleDiet} defaultValue='Eligir tipos de dietas' >
                                     <option disabled>Eligir tipos de dietas</option>
                                     {
-                                        allDiets.data && allDiets.data?.map(e => {
+                                        allDiets && allDiets?.map(e => {
                                             return (
                                                 <option key={e.name} value={e.name} name={e.name}>{e.name}</option>
                                             )

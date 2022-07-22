@@ -9,83 +9,39 @@ const {API_KEY} = process.env;
 
 const router = Router();
 
-/*router.get('/', async function(req, res, next){
-    const title = req.query.name
-    var recipes =[]
-    var lim=0
-    //primero busco en la api externa
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`).then(r => r.json())
-      .then((result) => {
-  
-        if(result && result.results){
-          recipes = result.results;
-  
-        //reformate los resultados para que quede igual a la bd
-          recipes = recipes.map(r=>({
-            id:r.id,
-            title:r.title,
-            summary:r.summary,
-            score: r.spoonacularScore,
-            healthyness:r.healthScore,
-            image:r.image,
-            diets:r.diets,
-            steps:(r.analyzedInstructions && r.analyzedInstructions.steps?r.analyzedInstructions.steps.map(item=>item.step).join("|"):'')
-            })
-          )
-        }
-        //filtro los resultados para obtener los que contienen el string en name
-  
-        recipes = recipes.filter(r=>!title || r.title.includes(title))
-        // si no hay 9 resultados busco en la base de datos
-  
-  
-  
-          filterByTitle(res,recipes,title)
-  
-        }  
-  
-     , ()=>{
-  
-      return filterByTitle(res,recipes,title,lim)}
-     
-     )
-  })*/
 
-/*let getApiInfo = async () => {
-    try {
-        let apiData = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
-        const { results } = apiData.data
-        let data = results.map(e => {
-            let dietas = e.diets
-            if(e.vegetarian && !dietas.includes('vegetarian'))dietas.push('vegetarian');
-            if(e.vegan && !dietas.includes('vegan'))dietas.push('vegan');
-            if(e.lowFodmap && !dietas.includes('low fodmap'))dietas.push('low fodmap');
-            if(e.glutenFree && !dietas.includes('gluten free'))dietas.push('gluten free');
-            if(e.dairyFree && !dietas.includes('dairy free'))dietas.push('dairy free');
 
-           
 
-            return {
-                id:e.id,
-                name:e.title,
-                lowFodmap: e.lowFodmap,
-                vegetarian:e.vegetarian,
-                vegan:e.vegan,
-                glutenFree:e.glutenFree,
-                dairyFree:e.dairyFree,
-                healthScore: e.healthScore,
-                summary: e.summary,
-                diets:dietas,
-                steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):''),
-                image:e.image
-            }
+/*async function getApiInfo() {
+    const UrlRecipes = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+        .then(inf => {
+            return inf.data.results
         })
-        return data
-    } catch (error) {
-        console.log(error)
-        return([])
-    }
+        
+    let attributesRecipe = UrlRecipes.map(e => {
+        return {
+            id:e.id,
+            name:e.title,
+            lowFodmap: e.lowFodmap,
+            vegetarian:e.vegetarian,
+            vegan:e.vegan,
+            glutenFree:e.glutenFree,
+            dairyFree:e.dairyFree,
+            healthScore: e.healthScore,
+            summary: e.summary,
+            diets:e.diets,
+            steps: (e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?e.analyzedInstructions[0].steps.map(s => s.step).join(" \n"):''),
+            image:e.image
+        }
+
+    })
+    return attributesRecipe
+
+    //return console.log(attributesPoke)
 }*/
+
+
+
 const getApiInfo = async () =>{
     const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
     //console.log(apiUrl)

@@ -1,7 +1,7 @@
 import {GET_ALL_RECIPES, GET_ALL_TYPES, GET_RECIPE_BY_ID,DELETE_RECIPE, UPDATE_RECIPE,
         FILTER_BY_DIETS, ORDER_BY_NAME,
         POST_RECIPE, GET_RECIPE_BY_NAME,
-        ADD_FAVORITE, DELETE_FAVORITE, ORDER_BY_SCORE, } 
+         ORDER_BY_SCORE, } 
 from '../actions/index'
 
 
@@ -12,7 +12,7 @@ const initialState = {
     recipe:{},
     types:[],
     error:true,
-    favourite_recipes:[],
+    
     backUp:[],
     errorRender: [],
     
@@ -127,47 +127,7 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             backUp: ordername,
           };
-            /*const [ord, type] =action.payload
-            let r, rf;
-
-            if(ord && type){
-                let all_recipes = state.all_recipes;
-                let filter_recets = state.recipes
-                if(type === 'alph'){
-                    if(ord === 'asc'){
-                        r = all_recipes.sort(sortAsc)
-                        rf = filter_recets.sort(sortAsc)
-                    }else{
-                        r = all_recipes.sort(sortDesc)
-                        rf = filter_recets.sort(sortDesc)
-                    }
-                }else if(type==='variety'){
-                    if(ord === 'asc'){
-                        r = all_recipes.sort((a,b) => a.diets.length - b.diets.length)
-                        rf = filter_recets.sort((a,b) => a.diets.length - b.diets.length)
-                    }else{
-                        r = all_recipes.sort((a,b) => b.diets.length - a.diets.length)
-                        rf = filter_recets.sort((a,b) => b.diets.length - a.diets.length)
-                    }
-                }else{
-                    if(ord === 'asc'){
-                        r = all_recipes.sort((a,b) => a.healthScore - b.healthScore)
-                        rf = filter_recets.sort((a,b) => a.healthScore - b.healthScore)
-                    }else{
-                        r = all_recipes.sort((a,b) => b.healthScore - a.healthScore)
-                        rf = filter_recets.sort((a,b) => b.healthScore - a.healthScore)
-                    }
-                }
-            }else{
-                return {...state} 
-            }
-            let t = {data:r}
-            let tf = {data:rf}
-            return {
-                ...state,
-                all_recipes: t,
-                recipes: tf
-            } */
+           
             case ORDER_BY_SCORE:
                 let OrderByScore =
                 action.payload === "minToMax"
@@ -185,16 +145,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 backUp: OrderByScore,
               };
-        case ADD_FAVORITE:
-            return {
-                ...state,
-                favourite_recipes: state.favourite_recipes.concat(action.payload)
-            }
-        case DELETE_FAVORITE:
-            return {
-                ...state,
-                favourite_recipes: state.favourite_recipes.filter(r => r.id.toString() !== action.payload)
-            }
+       
         default:
             return state
     }
